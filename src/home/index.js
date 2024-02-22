@@ -1,16 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert, Modal, Image, TouchableOpacity } from 'react-native';
-//import { ModalCar } from '../../components/modal';
+import { ModalVelocidade } from '../components/modal/index';
 
 const Separator = () => <View style={styles.separator} />;
 
 export function Home() {
 
-    const [modalVisible, setModalVisible] = useState(false);
+    const [velocidadeVisible, setVelocidadeVisible] = useState(false);
 
-    function createCar() {
-        setModalVisible(true);
+    function calcularVelocidade() {
+        setVelocidadeVisible(true);
     }
 
     return (
@@ -31,7 +31,7 @@ export function Home() {
 
             <Separator/>
             <View style={styles.botoes}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={calcularVelocidade}>
                       <Text style={styles.buttonText}>VELOCIDADE DE CORTE</Text>
                 </TouchableOpacity>
 
@@ -48,8 +48,8 @@ export function Home() {
                 </TouchableOpacity>
             </View>
 
-            <Modal visible={modalVisible} animationType='fade'>
-                
+            <Modal visible={velocidadeVisible} animationType='fade'>
+                <ModalVelocidade handleClose={ () => setVelocidadeVisible(false) } />
             </Modal>
 
         </View>

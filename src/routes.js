@@ -33,9 +33,9 @@ export function Routes() {
                     headerShown: false,
                     tabBarIcon: ({ focused, size, color }) => {
                         if(focused){
-                            return <Ionicons size={size} color={color} name='car' />
+                            return <Ionicons size={size} color={color} name='bookmark' />
                         }
-                        return <Ionicons size={size} color={color} name='car-outline' />
+                        return <Ionicons size={size} color={color} name='bookmark-outline' />
                     }
                 }}
             />
