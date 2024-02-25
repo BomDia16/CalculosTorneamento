@@ -1,50 +1,52 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Alert, Pressable, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
-import { TextInputMask } from 'react-native-masked-text'
+import {ModalResultado} from '../avanco/resultado'
 
 const Separator = () => <View style={styles.separator} />;
 
-export function ModalVelocidade({handleClose}) {
+export function ModalAvanco({handleClose}) {
+
+    const [resultadoVisible, setResultadoVisible] = useState(false);
 
     //const { saveItem } = useStorage();
-    const [velocidadeCorte, setVelocidadeCorte] = useState("")
-    const [diametro, setDiametro] = useState("")
-
     const [rotacao, setRotacao] = useState("")
+    const [avancoPVolta, setAvancoPVolta] = useState("")
+
+    const [avanco, setAvanco] = useState("")
     
     async function handleCalcular(){
-        value = (velocidadeCorte * 1000)/(Math.PI * diametro)
-        setRotacao(value)
-        console.log(rotacao)
+        value = (avancoPVolta*rotacao).toFixed(2)
+        setAvanco(value)
+        setResultadoVisible(true)
     }
     
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Velocidade de Corte</Text>
-                    <Text>Valor de n (Rotação do eixo principal)</Text>
+                    <Text style={styles.title}>Cálculo de Avanço</Text>
+                    <Text>Valor de fl (Avanço linear)</Text>
                 </View>
 
                 <View style={styles.formArea}>
                     <TextInput style={styles.input} 
-                                placeholder='Velocidade de Corte (m/min)' 
+                                placeholder='Avanço por volta (mm/rot)' 
                                 type={'custom'}
                                 keyboardType='numeric'
                                 placeholderTextColor="#161616" 
-                                value={velocidadeCorte}
-                                onChangeText={ (value) => setVelocidadeCorte(value) }/>
+                                value={avancoPVolta}
+                                onChangeText={ (value) => setAvancoPVolta(value) }/>
 
                     <TextInput style={styles.input} 
-                                placeholder='Diâmetro da Peça (mm)' 
+                                placeholder='Rotação do eixo principal (min⁻¹ ou rpm)' 
                                 type={'custom'}
                                 keyboardType='numeric'
                                 placeholderTextColor="#161616" 
-                                value={diametro}
-                                onChangeText={ (value) => setDiametro(value) }/>
+                                value={rotacao}
+                                onChangeText={ (value) => setRotacao(value) }/>
                 </View>
 
                 <View style={styles.buttonArea}>
@@ -56,7 +58,10 @@ export function ModalVelocidade({handleClose}) {
                         <Ionicons style={styles.buttonSaveText} size={25} color={'white'} name='reorder-two' />
                     </TouchableOpacity>
                 </View>
-            </View>    
+            </View>
+            <Modal visible={resultadoVisible} animationType='fade'>
+                <ModalResultado resultado={avanco} handleClose={ () => setResultadoVisible(false) } />
+            </Modal>    
         </View>
     );
 }

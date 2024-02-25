@@ -1,16 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert, Modal, Image, TouchableOpacity } from 'react-native';
-import { ModalVelocidade } from '../components/modal/index';
+import { ModalVelocidade } from '../components/modal/velocidade/index';
+import { ModalAvanco } from '../components/modal/avanco/index'
+import { ModalTempoCorte } from '../components/modal/tempoCorte/index'
 
 const Separator = () => <View style={styles.separator} />;
 
 export function Home() {
 
     const [velocidadeVisible, setVelocidadeVisible] = useState(false);
+    const [avancoVisible, setAvancoVisible] = useState(false);
+    const [tempoCorteVisible, setTempoCorteVisible] = useState(false);
 
     function calcularVelocidade() {
         setVelocidadeVisible(true);
+    }
+
+    function calcularAvanco() {
+      setAvancoVisible(true);
+    }
+
+    function calcularTempoCorte() {
+      setTempoCorteVisible(true);
     }
 
     return (
@@ -35,11 +47,11 @@ export function Home() {
                       <Text style={styles.buttonText}>VELOCIDADE DE CORTE</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
-                      <Text style={styles.buttonText}>AVANÇO</Text>
+                <TouchableOpacity style={styles.button} onPress={calcularAvanco}>
+                      <Text style={styles.buttonText}>AVANÇO LINEAR</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={calcularTempoCorte}>
                       <Text style={styles.buttonText}>TEMPO DE CORTE</Text>
                 </TouchableOpacity>
 
@@ -50,6 +62,14 @@ export function Home() {
 
             <Modal visible={velocidadeVisible} animationType='fade'>
                 <ModalVelocidade handleClose={ () => setVelocidadeVisible(false) } />
+            </Modal>
+
+            <Modal visible={avancoVisible} animationType='fade'>
+                <ModalAvanco handleClose={ () => setAvancoVisible(false) } />
+            </Modal>
+
+            <Modal visible={tempoCorteVisible} animationType='fade'>
+                <ModalTempoCorte handleClose={ () => setTempoCorteVisible(false) } />
             </Modal>
 
         </View>
