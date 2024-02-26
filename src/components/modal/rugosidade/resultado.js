@@ -12,12 +12,12 @@ export function ModalResultado({handleClose, resultado}) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Tempo de Corte</Text>
-                    <Text>Valor de tc (Tempo de Corte)</Text>
+                    <Text style={styles.title}>Cálculo de Avanço Linear</Text>
+                    <Text>Valor de fl (Avanço Linear)</Text>
                 </View>
 
                 <View style={styles.input}>
-                    <Text>{resultado} min</Text>
+                    <Text>{resultado} mm/min</Text>
                 </View>
 
                 <View style={styles.buttonArea}>

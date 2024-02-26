@@ -17,7 +17,7 @@ export function ModalResultado({handleClose, resultado}) {
                 </View>
 
                 <View style={styles.input}>
-                    <Text>{resultado} min⁻¹</Text>
+                    <Text>{resultado} rpm</Text>
                 </View>
 
                 <View style={styles.buttonArea}>

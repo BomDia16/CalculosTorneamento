@@ -3,21 +3,51 @@ import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'reac
 import { Ionicons } from '@expo/vector-icons'
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
+import {ModalResultado} from '../rugosidade/resultado'
 
-export function ModalResultado({handleClose, resultado}) {
+const Separator = () => <View style={styles.separator} />;
 
+export function ModalRugosidade({handleClose}) {
+
+    const [resultadoVisible, setResultadoVisible] = useState(false);
+
+    //const { saveItem } = useStorage();
+    const [raio, setRaio] = useState("")
+    const [rugosidade, setRugosidade] = useState("")
+
+    const [avanco, setAvanco] = useState("")
     
+    async function handleCalcular(){
+        value = Math.sqrt((rugosidade*raio)/125)
+        value = (value * 0.7).toFixed(2)
+        setAvanco(value)
+        setResultadoVisible(true)
+    }
     
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Tempo de Corte</Text>
-                    <Text>Valor de tc (Tempo de Corte)</Text>
+                    <Text style={styles.title}>Cálculo de Rugosidade</Text>
+                    <Text>Valor de fl (Avanço linear)</Text>
                 </View>
 
-                <View style={styles.input}>
-                    <Text>{resultado} min</Text>
+                <View style={styles.formArea}>
+                    <TextInput style={styles.input} 
+                                placeholder='Raio de Ponta do Inserto (mm)' 
+                                type={'custom'}
+                                keyboardType='numeric'
+                                placeholderTextColor="#161616" 
+                                value={raio}
+                                onChangeText={ (value) => setRaio(value) }/>
+
+                    <TextInput style={styles.input} 
+                                placeholder='Rugosidade (Rz ou µm)' 
+                                type={'custom'}
+                                keyboardType='numeric'
+                                placeholderTextColor="#161616" 
+                                value={rugosidade}
+                                onChangeText={ (value) => setRugosidade(value) }/>
                 </View>
 
                 <View style={styles.buttonArea}>
@@ -25,11 +55,14 @@ export function ModalResultado({handleClose, resultado}) {
                         <Text style={styles.buttonText}>Voltar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, styles.buttonSave]}>
-                        <Text style={styles.text}>Salvar</Text>
+                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={handleCalcular}>
+                        <Ionicons style={styles.buttonSaveText} size={25} color={'white'} name='reorder-two' />
                     </TouchableOpacity>
                 </View>
-            </View>   
+            </View>
+            <Modal visible={resultadoVisible} animationType='fade'>
+                <ModalResultado resultado={avanco} handleClose={ () => setResultadoVisible(false) } />
+            </Modal>    
         </View>
     );
 }
@@ -63,9 +96,7 @@ const styles = StyleSheet.create({
         padding:14,
         borderRadius: 8,
         borderColor: 'black',
-        marginBottom: 10,
-        alignItems:'center',
-        justifyContent:'space-between'
+        marginBottom: 10
     },
     text:{
         color:'#FFF',

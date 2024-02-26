@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button, Alert, Modal, Image, TouchableOpacity }
 import { ModalVelocidade } from '../components/modal/velocidade/index';
 import { ModalAvanco } from '../components/modal/avanco/index'
 import { ModalTempoCorte } from '../components/modal/tempoCorte/index'
+import { ModalRugosidade } from '../components/modal/rugosidade';
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -12,6 +13,7 @@ export function Home() {
     const [velocidadeVisible, setVelocidadeVisible] = useState(false);
     const [avancoVisible, setAvancoVisible] = useState(false);
     const [tempoCorteVisible, setTempoCorteVisible] = useState(false);
+    const [rugosidadeVisible, setRugosidadeVisible] = useState(false);
 
     function calcularVelocidade() {
         setVelocidadeVisible(true);
@@ -23,6 +25,10 @@ export function Home() {
 
     function calcularTempoCorte() {
       setTempoCorteVisible(true);
+    }
+
+    function calcularRugosidade() {
+      setRugosidadeVisible(true);
     }
 
     return (
@@ -55,7 +61,7 @@ export function Home() {
                       <Text style={styles.buttonText}>TEMPO DE CORTE</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={calcularRugosidade}>
                       <Text style={styles.buttonText}>RUGOSIDADE</Text>
                 </TouchableOpacity>
             </View>
@@ -70,6 +76,10 @@ export function Home() {
 
             <Modal visible={tempoCorteVisible} animationType='fade'>
                 <ModalTempoCorte handleClose={ () => setTempoCorteVisible(false) } />
+            </Modal>
+
+            <Modal visible={rugosidadeVisible} animationType='fade'>
+                <ModalRugosidade handleClose={ () => setRugosidadeVisible(false) } />
             </Modal>
 
         </View>
