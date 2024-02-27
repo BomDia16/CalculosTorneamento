@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
@@ -18,9 +18,13 @@ export function ModalVelocidade({handleClose}) {
     const [rotacao, setRotacao] = useState("")
     
     async function handleCalcular(){
-        value = ((velocidadeCorte * 1000)/(Math.PI * diametro)).toFixed(2)
-        setRotacao(value)
-        setResultadoVisible(true)
+        if (velocidadeCorte != "" && diametro != ""){
+            value = ((velocidadeCorte * 1000)/(Math.PI * diametro)).toFixed(2)
+            setRotacao(value)
+            setResultadoVisible(true)
+        } else {
+            alert("Insira os valores pedidos corretamente.")
+        }
     }
     
     return (
@@ -29,6 +33,7 @@ export function ModalVelocidade({handleClose}) {
                 <View style={styles.titleArea}>
                     <Text style={styles.title}>Cálculo de Velocidade de Corte</Text>
                     <Text>Valor de n (Rotação do eixo principal)</Text>
+                    <Text>Decimais precisam ser no padrão americano (com ponto)</Text>
                 </View>
 
                 <View style={styles.formArea}>

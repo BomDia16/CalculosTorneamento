@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
@@ -18,10 +18,14 @@ export function ModalRugosidade({handleClose}) {
     const [avanco, setAvanco] = useState("")
     
     async function handleCalcular(){
-        value = Math.sqrt((rugosidade*raio)/125)
-        value = (value * 0.7).toFixed(2)
-        setAvanco(value)
-        setResultadoVisible(true)
+        if (raio != "" && rugosidade != "") {    
+            value = Math.sqrt((rugosidade*raio)/125)
+            value = (value * 0.7).toFixed(2)
+            setAvanco(value)
+            setResultadoVisible(true)
+        } else {
+            alert("Insira os valores pedidos corretamente.")
+        }
     }
     
     return (
@@ -30,6 +34,7 @@ export function ModalRugosidade({handleClose}) {
                 <View style={styles.titleArea}>
                     <Text style={styles.title}>Cálculo de Rugosidade</Text>
                     <Text>Valor de fl (Avanço linear)</Text>
+                    <Text>Decimais precisam ser no padrão americano (com ponto)</Text>
                 </View>
 
                 <View style={styles.formArea}>

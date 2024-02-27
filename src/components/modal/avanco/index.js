@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
@@ -18,9 +18,13 @@ export function ModalAvanco({handleClose}) {
     const [avanco, setAvanco] = useState("")
     
     async function handleCalcular(){
-        value = (avancoPVolta*rotacao).toFixed(2)
-        setAvanco(value)
-        setResultadoVisible(true)
+        if (rotacao != "" && avancoPVolta != "") {    
+            value = (avancoPVolta*rotacao).toFixed(2)
+            setAvanco(value)
+            setResultadoVisible(true)
+        } else {
+            alert("Insira os valores pedidos corretamente.")
+        }
     }
     
     return (
@@ -29,6 +33,7 @@ export function ModalAvanco({handleClose}) {
                 <View style={styles.titleArea}>
                     <Text style={styles.title}>Cálculo de Avanço</Text>
                     <Text>Valor de fl (Avanço linear)</Text>
+                    <Text>Decimais precisam ser no padrão americano (com ponto)</Text>
                 </View>
 
                 <View style={styles.formArea}>

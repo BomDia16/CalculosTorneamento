@@ -14,6 +14,7 @@ export function ModalResultado({handleClose, resultado}) {
                 <View style={styles.titleArea}>
                     <Text style={styles.title}>Cálculo de Velocidade de Corte</Text>
                     <Text>Valor de n (Rotação do eixo principal)</Text>
+                    <Text>Para copiar segure encima do resultado</Text>
                 </View>
 
                 <View style={styles.input}>
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderColor: 'black',
         marginBottom: 10,
+        marginTop: 10,
         alignItems:'center',
         justifyContent:'space-between'
     },

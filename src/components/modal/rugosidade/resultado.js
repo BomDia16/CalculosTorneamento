@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'
+import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput, Pressable } from 'react-native';
 //import useStorage from "../../hooks/useStorage";
-import { useState } from 'react';
+import * as Clipboard from 'expo-clipboard';
 
 export function ModalResultado({handleClose, resultado}) {
 
-    
+    async function copy() {
+        Clipboard.setStringAsync(resultado)
+        alert('Valor copiado com sucesso!')
+    }
     
     return (
         <View style={styles.container}>
@@ -14,10 +16,13 @@ export function ModalResultado({handleClose, resultado}) {
                 <View style={styles.titleArea}>
                     <Text style={styles.title}>Cálculo de Avanço Linear</Text>
                     <Text>Valor de fl (Avanço Linear)</Text>
+                    <Text>Para copiar segure encima do resultado</Text>
                 </View>
 
                 <View style={styles.input}>
-                    <Text>{resultado} mm/min</Text>
+                    <Pressable onLongPress={copy}>
+                        <Text>{resultado} mm/min</Text>
+                    </ Pressable>
                 </View>
 
                 <View style={styles.buttonArea}>

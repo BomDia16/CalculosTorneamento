@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home } from './home/index'
-import { Mycars } from './mycars/index'
+import { Results } from './results/index'
 
 import { Ionicons } from '@expo/vector-icons'
 
@@ -25,8 +25,8 @@ export function Routes() {
             />
 
             <Tab.Screen
-                name='mycars'
-                component={Mycars}
+                name='results'
+                component={Results}
                 options={{
                     headerShown: false,
                     tabBarShowLabel: false,

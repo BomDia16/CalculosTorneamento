@@ -1,21 +1,21 @@
 //import { useState, useEffect, useRef } from "react";
 import { View, Text, StyleSheet, FlatList, Pressable, Modal } from 'react-native'
 //import { useIsFocused } from "@react-navigation/native";
-//import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 //import useStorage from "../../hooks/useStorage";
 
 //import { CarroItem, ModalCarro } from "./components/carroItem";
 
-export function Mycars() {
+export function Results() {
 
       return (
         <SafeAreaView style={{ flex:1, }}>
             <View style={styles.header}>
-                <Text style={styles.title}>Meus carros</Text>
+                <Text style={styles.title}>Resultados salvos</Text>
             </View>
 
             <View style={styles.content}>
-                <Text style={styles.texto}>Para editar, só clique em cima do carro desejado.</Text>
+                <Text style={styles.texto}>Para copiar um resultado apenas segure encima do desejado.</Text>
 
                 <Pressable style={styles.containerTabela}>
                   <Text style={styles.text}>Placa</Text>
@@ -23,13 +23,8 @@ export function Mycars() {
                   <Text style={styles.text}>Modelo</Text>
                   <Text style={styles.text}>Cor</Text>
                   <Text style={styles.text}>Delete</Text>
-                </Pressable>
-
-                
+                </Pressable> 
             </View>
-
-            <Modal visible={modalVisible} animationType='fade'>
-            </Modal>
         </SafeAreaView>
       );
 }
@@ -60,7 +55,7 @@ const styles = StyleSheet.create({
       borderBottomWidth: StyleSheet.hairlineWidth,
     },
     header:{
-      backgroundColor: '#392de9',
+      backgroundColor: 'dodgerblue',
       paddingTop:58,
       paddingBottom:14,
       paddingLeft:14,
