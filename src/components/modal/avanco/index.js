@@ -65,7 +65,7 @@ export function ModalAvanco({handleClose}) {
                 </View>
             </View>
             <Modal visible={resultadoVisible} animationType='fade'>
-                <ModalResultado resultado={avanco} handleClose={ () => setResultadoVisible(false) } />
+                <ModalResultado resultado={avanco} handleClose={ () => {setResultadoVisible(false); handleClose()} } />
             </Modal>    
         </View>
     );

@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Home } from './home/index'
-import { Results } from './results/index'
+import { Home } from './pages/home'
+import { Results } from './pages/results'
 
 import { Ionicons } from '@expo/vector-icons'
 

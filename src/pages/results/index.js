@@ -4,8 +4,6 @@ import { View, Text, StyleSheet, FlatList, Pressable, Modal } from 'react-native
 import { SafeAreaView } from "react-native-safe-area-context";
 //import useStorage from "../../hooks/useStorage";
 
-//import { CarroItem, ModalCarro } from "./components/carroItem";
-
 export function Results() {
 
       return (
@@ -18,11 +16,8 @@ export function Results() {
                 <Text style={styles.texto}>Para copiar um resultado apenas segure encima do desejado.</Text>
 
                 <Pressable style={styles.containerTabela}>
-                  <Text style={styles.text}>Placa</Text>
-                  <Text style={styles.text}>Marca</Text>
-                  <Text style={styles.text}>Modelo</Text>
-                  <Text style={styles.text}>Cor</Text>
-                  <Text style={styles.text}>Delete</Text>
+                  <Text style={styles.text}>Conta</Text>
+                  <Text style={styles.text}>Resultado</Text>
                 </Pressable> 
             </View>
         </SafeAreaView>
@@ -81,7 +76,7 @@ const styles = StyleSheet.create({
       borderRadius:8,
       flexDirection:'row',
       alignItems:'center',
-      justifyContent:'space-between',
+      justifyContent:'space-around',
       marginTop: 30,
     }
 });

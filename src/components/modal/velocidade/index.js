@@ -65,7 +65,7 @@ export function ModalVelocidade({handleClose}) {
                 </View>
             </View>
             <Modal visible={resultadoVisible} animationType='fade'>
-                <ModalResultado resultado={rotacao} handleClose={ () => setResultadoVisible(false) } />
+                <ModalResultado resultado={rotacao} handleClose={ () => {setResultadoVisible(false); handleClose();} } />
             </Modal>    
         </View>
     );

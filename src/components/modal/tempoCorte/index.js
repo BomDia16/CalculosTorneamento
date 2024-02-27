@@ -64,7 +64,7 @@ export function ModalTempoCorte({handleClose}) {
                 </View>
             </View>
             <Modal visible={resultadoVisible} animationType='fade'>
-                <ModalResultado resultado={tempoCorte} handleClose={ () => setResultadoVisible(false) } />
+                <ModalResultado resultado={tempoCorte} handleClose={ () => {setResultadoVisible(false); handleClose()} } />
             </Modal>    
         </View>
     );

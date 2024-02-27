@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'
+import { StyleSheet, Text, View, Modal, TouchableOpacity, Pressable } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
 
 export function ModalResultado({handleClose, resultado}) {
 
-    
+    async function copy() {
+        Clipboard.setStringAsync(resultado)
+        alert('Valor copiado com sucesso!')
+    }
     
     return (
         <View style={styles.container}>
@@ -18,7 +21,9 @@ export function ModalResultado({handleClose, resultado}) {
                 </View>
 
                 <View style={styles.input}>
-                    <Text>{resultado} rpm</Text>
+                    <Pressable onLongPress={copy}>
+                        <Text>{resultado} rpm</Text>
+                    </Pressable>
                 </View>
 
                 <View style={styles.buttonArea}>

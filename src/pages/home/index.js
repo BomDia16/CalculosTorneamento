@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert, Modal, Image, TouchableOpacity } from 'react-native';
-import { ModalVelocidade } from '../components/modal/velocidade/index';
-import { ModalAvanco } from '../components/modal/avanco/index'
-import { ModalTempoCorte } from '../components/modal/tempoCorte/index'
-import { ModalRugosidade } from '../components/modal/rugosidade';
+import { ModalVelocidade } from '../../components/modal/velocidade/index';
+import { ModalAvanco } from '../../components/modal/avanco/index'
+import { ModalTempoCorte } from '../../components/modal/tempoCorte/index'
+import { ModalRugosidade } from '../../components/modal/rugosidade';
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -42,7 +42,7 @@ export function Home() {
             
             <View>
               <Image
-                source={require("../assets/usinagem-torneamentoduro1.jpg")}
+                source={require("../../assets/usinagem-torneamentoduro1.jpg")}
                 resizeMode='center'
               />
             </View>
