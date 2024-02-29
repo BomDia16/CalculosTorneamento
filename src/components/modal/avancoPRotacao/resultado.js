@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, Pressable } from 'react-native';
-import * as Clipboard from 'expo-clipboard';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput, Pressable } from 'react-native';
 //import useStorage from "../../hooks/useStorage";
-import { useState } from 'react';
+import * as Clipboard from 'expo-clipboard';
 
 export function ModalResultado({handleClose, resultado}) {
 
@@ -15,15 +14,15 @@ export function ModalResultado({handleClose, resultado}) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Velocidade de Corte</Text>
-                    <Text>Valor de n (Rotação do eixo principal)</Text>
+                    <Text style={styles.title}>Cálculo de Avanço por Rotação</Text>
+                    <Text>Valor de fl (Avanço por Rotação)</Text>
                     <Text>Para copiar segure encima do resultado</Text>
                 </View>
 
                 <View style={styles.input}>
                     <Pressable onLongPress={copy}>
-                        <Text>{resultado} rpm</Text>
-                    </Pressable>
+                        <Text>{resultado} mm/rot</Text>
+                    </ Pressable>
                 </View>
 
                 <View style={styles.buttonArea}>
@@ -70,7 +69,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderColor: 'black',
         marginBottom: 10,
-        marginTop: 10,
         alignItems:'center',
         justifyContent:'space-between'
     },

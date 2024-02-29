@@ -30,7 +30,7 @@ export function ModalTempoCorte({handleClose}) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Tempo de Corte</Text>
+                    <Text style={styles.title}>Cálculo do Tempo de Corte</Text>
                     <Text>Valor de tc (Tempo de corte)</Text>
                     <Text>Decimais precisam ser no padrão americano (com ponto)</Text>
                 </View>
@@ -64,7 +64,7 @@ export function ModalTempoCorte({handleClose}) {
                 </View>
             </View>
             <Modal visible={resultadoVisible} animationType='fade'>
-                <ModalResultado resultado={tempoCorte} handleClose={ () => {setResultadoVisible(false); handleClose()} } />
+                <ModalResultado resultado={tempoCorte} handleClose={ () => {setResultadoVisible(false)} } />
             </Modal>    
         </View>
     );

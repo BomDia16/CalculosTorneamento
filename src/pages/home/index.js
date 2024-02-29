@@ -1,22 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert, Modal, Image, TouchableOpacity } from 'react-native';
-import { ModalVelocidade } from '../../components/modal/velocidade/index';
+import { ModalRotacao } from '../../components/modal/rotacao/index';
 import { ModalAvanco } from '../../components/modal/avanco/index'
 import { ModalTempoCorte } from '../../components/modal/tempoCorte/index'
-import { ModalRugosidade } from '../../components/modal/rugosidade';
+import { ModalAvancoPRotacao } from '../../components/modal/avancoPRotacao';
 
 const Separator = () => <View style={styles.separator} />;
 
 export function Home() {
 
-    const [velocidadeVisible, setVelocidadeVisible] = useState(false);
+    const [rotacaoVisible, setRotacaoVisible] = useState(false);
     const [avancoVisible, setAvancoVisible] = useState(false);
     const [tempoCorteVisible, setTempoCorteVisible] = useState(false);
-    const [rugosidadeVisible, setRugosidadeVisible] = useState(false);
+    const [avancoPRotacaoVisible, setAvancoPRotacaoVisible] = useState(false);
 
-    function calcularVelocidade() {
-        setVelocidadeVisible(true);
+    function calcularRotacao() {
+        setRotacaoVisible(true);
     }
 
     function calcularAvanco() {
@@ -27,8 +27,8 @@ export function Home() {
       setTempoCorteVisible(true);
     }
 
-    function calcularRugosidade() {
-      setRugosidadeVisible(true);
+    function calcularAvancoPRotacao() {
+      setAvancoPRotacaoVisible(true);
     }
 
     return (
@@ -36,8 +36,9 @@ export function Home() {
             <StatusBar style="auto" />
             
             <View style={styles.texto}>
-                <Text>Cálculos de Torneamento!</Text>
-                <Text>Um app que calcula automaticamente certos cálculos de torneamento.</Text>
+                <Text style={styles.title}>Cálculos para Operação de Torneamento!</Text>
+                <Text style={styles.descricao}>Este app tem como objetivo auxiliar o técnico de processos no melhor aproveitamento dos recursos, garantindo
+                   a qualidade do produto no menor tempo possível.</Text>
             </View>
             
             <View>
@@ -49,8 +50,12 @@ export function Home() {
 
             <Separator/>
             <View style={styles.botoes}>
-                <TouchableOpacity style={styles.button} onPress={calcularVelocidade}>
-                      <Text style={styles.buttonText}>VELOCIDADE DE CORTE</Text>
+                <TouchableOpacity style={styles.button} onPress={calcularAvancoPRotacao}>
+                      <Text style={styles.buttonText}>AVANÇO POR ROTAÇÂO</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button} onPress={calcularRotacao}>
+                      <Text style={styles.buttonText}>ROTAÇÂO</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button} onPress={calcularAvanco}>
@@ -60,14 +65,10 @@ export function Home() {
                 <TouchableOpacity style={styles.button} onPress={calcularTempoCorte}>
                       <Text style={styles.buttonText}>TEMPO DE CORTE</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity style={styles.button} onPress={calcularRugosidade}>
-                      <Text style={styles.buttonText}>RUGOSIDADE</Text>
-                </TouchableOpacity>
             </View>
 
-            <Modal visible={velocidadeVisible} animationType='fade'>
-                <ModalVelocidade handleClose={ () => setVelocidadeVisible(false) } />
+            <Modal visible={rotacaoVisible} animationType='fade'>
+                <ModalRotacao handleClose={ () => setRotacaoVisible(false) } />
             </Modal>
 
             <Modal visible={avancoVisible} animationType='fade'>
@@ -78,8 +79,8 @@ export function Home() {
                 <ModalTempoCorte handleClose={ () => setTempoCorteVisible(false) } />
             </Modal>
 
-            <Modal visible={rugosidadeVisible} animationType='fade'>
-                <ModalRugosidade handleClose={ () => setRugosidadeVisible(false) } />
+            <Modal visible={avancoPRotacaoVisible} animationType='fade'>
+                <ModalAvancoPRotacao handleClose={ () => setAvancoPRotacaoVisible(false) } />
             </Modal>
 
         </View>
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
   texto: {
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 15,
   },
 
   botoes: {
@@ -125,4 +127,13 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     marginBottom: 15,
   },
+  title:{
+    fontSize:20,
+    fontWeight:'bold',
+    color:'#000',
+    marginBottom:24,
+  },
+  descricao:{
+    fontSize:16
+  }
 });

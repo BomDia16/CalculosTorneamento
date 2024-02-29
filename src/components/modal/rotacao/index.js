@@ -7,7 +7,7 @@ import {ModalResultado} from '../velocidade/resultado'
 
 const Separator = () => <View style={styles.separator} />;
 
-export function ModalVelocidade({handleClose}) {
+export function ModalRotacao({handleClose}) {
 
     const [resultadoVisible, setResultadoVisible] = useState(false);
 
@@ -19,7 +19,7 @@ export function ModalVelocidade({handleClose}) {
     
     async function handleCalcular(){
         if (velocidadeCorte != "" && diametro != ""){
-            value = ((velocidadeCorte * 1000)/(Math.PI * diametro)).toFixed(2)
+            value = Math.round((velocidadeCorte * 1000)/(Math.PI * diametro))
             setRotacao(value)
             setResultadoVisible(true)
         } else {
@@ -31,7 +31,7 @@ export function ModalVelocidade({handleClose}) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Velocidade de Corte</Text>
+                    <Text style={styles.title}>Cálculo de Rotação</Text>
                     <Text>Valor de n (Rotação do eixo principal)</Text>
                     <Text>Decimais precisam ser no padrão americano (com ponto)</Text>
                 </View>
@@ -65,7 +65,7 @@ export function ModalVelocidade({handleClose}) {
                 </View>
             </View>
             <Modal visible={resultadoVisible} animationType='fade'>
-                <ModalResultado resultado={rotacao} handleClose={ () => {setResultadoVisible(false); handleClose();} } />
+                <ModalResultado resultado={rotacao} handleClose={ () => {setResultadoVisible(false)} } />
             </Modal>    
         </View>
     );

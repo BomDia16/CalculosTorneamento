@@ -15,7 +15,7 @@ export function ModalResultado({handleClose, resultado}) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Avanço Linear</Text>
+                    <Text style={styles.title}>Cálculo do Avanço Linear</Text>
                     <Text>Valor de fl (Avanço Linear)</Text>
                     <Text>Para copiar segure encima do resultado</Text>
                 </View>

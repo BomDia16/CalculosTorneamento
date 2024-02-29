@@ -15,7 +15,7 @@ export function ModalResultado({handleClose, resultado}) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Tempo de Corte</Text>
+                    <Text style={styles.title}>Cálculo do Tempo de Corte</Text>
                     <Text>Valor de tc (Tempo de Corte)</Text>
                     <Text>Para copiar segure encima do resultado</Text>
                 </View>

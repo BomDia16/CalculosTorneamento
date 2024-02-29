@@ -3,11 +3,11 @@ import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput, Alert } fro
 import { Ionicons } from '@expo/vector-icons'
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
-import {ModalResultado} from '../rugosidade/resultado'
+import {ModalResultado} from '../avancoPRotacao/resultado'
 
 const Separator = () => <View style={styles.separator} />;
 
-export function ModalRugosidade({handleClose}) {
+export function ModalAvancoPRotacao({handleClose}) {
 
     const [resultadoVisible, setResultadoVisible] = useState(false);
 
@@ -32,8 +32,8 @@ export function ModalRugosidade({handleClose}) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleArea}>
-                    <Text style={styles.title}>Cálculo de Rugosidade</Text>
-                    <Text>Valor de fl (Avanço linear)</Text>
+                    <Text style={styles.title}>Cálculo de Avanço por Rotação</Text>
+                    <Text>Valor de fl (Avanço por Rotação)</Text>
                     <Text>Decimais precisam ser no padrão americano (com ponto)</Text>
                 </View>
 
@@ -66,7 +66,7 @@ export function ModalRugosidade({handleClose}) {
                 </View>
             </View>
             <Modal visible={resultadoVisible} animationType='fade'>
-                <ModalResultado resultado={avanco} handleClose={ () => {setResultadoVisible(false); handleClose()} } />
+                <ModalResultado resultado={avanco} handleClose={ () => {setResultadoVisible(false)} } />
             </Modal>    
         </View>
     );
