@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput, Alert } fro
 import { Ionicons } from '@expo/vector-icons'
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
-import {ModalResultado} from '../velocidade/resultado'
+import {ModalResultado} from '../rotacao/resultado'
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -19,7 +19,7 @@ export function ModalRotacao({handleClose}) {
     
     async function handleCalcular(){
         if (velocidadeCorte != "" && diametro != ""){
-            value = Math.round((velocidadeCorte * 1000)/(Math.PI * diametro))
+            value = String(Math.round((velocidadeCorte * 1000)/(Math.PI * diametro)))
             setRotacao(value)
             setResultadoVisible(true)
         } else {

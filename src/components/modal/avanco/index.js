@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 //import useStorage from "../../hooks/useStorage";
 import { useState } from 'react';
 import {ModalResultado} from '../avanco/resultado'
+import { StringFormat } from 'expo-clipboard';
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -19,7 +20,7 @@ export function ModalAvanco({handleClose}) {
     
     async function handleCalcular(){
         if (rotacao != "" && avancoPVolta != "") {    
-            value = Math.round(avancoPVolta*rotacao)
+            value = String(Math.round(avancoPVolta*rotacao))
             setAvanco(value)
             setResultadoVisible(true)
         } else {

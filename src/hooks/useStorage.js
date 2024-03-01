@@ -1,11 +1,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useEffect, useState } from 'react/cjs/react.production.min';
 
 const useStorage = () => {
+
+    const [tableContas, setTableContas] = useState([])
+
+    useEffect(() => {
+        getItem();
+    }, [])
+
     // buscar itens salvos
-    const getItem = async (key) => {
+    const getItem = async () => {
         try {
-            const passwords = await AsyncStorage.getItem(key);
-            return JSON.parse(passwords) || [];
+            const storedData = await AsyncStorage.getItem('tableContas');
+            if(storedData) {
+                setTableContas(JSON.parse(storedData))
+            }
 
         } catch (error) {
             console.log('Erro ao buscar', error)
@@ -13,12 +23,19 @@ const useStorage = () => {
         }
     }
 
+    // adicionar nova linha
+    const addNewConta = async (newRow) => {
+        const newConta = [...tableContas, newRow];
+        setTableContas(newConta)
+
+        // salvar de verdade
+        await saveItem(newConta)
+    }
+
     // salvar item no storage
-    const saveItem = async (key, value) => {
+    const saveItem = async (data) => {
         try {
-            let passwords = await getItem(key);
-            passwords.push(value)
-            await AsyncStorage.setItem(key, JSON.stringify(passwords))
+            await AsyncStorage.setItem('tableContas', JSON.stringify(data))
             
         } catch (error) {
             console.log('Erro ao salvar', error)
@@ -44,6 +61,7 @@ const useStorage = () => {
         getItem,
         saveItem,
         removeItem,
+        addNewConta
     }
 }
 

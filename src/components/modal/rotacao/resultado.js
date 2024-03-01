@@ -11,6 +11,10 @@ export function ModalResultado({handleClose, resultado}) {
         alert('Valor copiado com sucesso!')
     }
     
+    async function saveRotacao(resultado) {
+        
+    }
+    
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -31,7 +35,7 @@ export function ModalResultado({handleClose, resultado}) {
                         <Text style={styles.buttonText}>Voltar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, styles.buttonSave]}>
+                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={saveRotacao}>
                         <Text style={styles.text}>Salvar</Text>
                     </TouchableOpacity>
                 </View>
