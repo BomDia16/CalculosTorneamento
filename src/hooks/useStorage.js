@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useEffect, useState } from 'react/cjs/react.production.min';
+import { useEffect, useState } from 'react';
 
 const useStorage = () => {
 
-    const [tableContas, setTableContas] = useState([])
+    const [tableContas, setTableContas] = useState([]);
 
     useEffect(() => {
         getItem();
@@ -25,7 +25,8 @@ const useStorage = () => {
 
     // adicionar nova linha
     const addNewConta = async (newRow) => {
-        const newConta = [...tableContas, newRow];
+        const newId = tableContas.leght + 1
+        const newConta = [...tableContas, { id: newId, ...newRow}];
         setTableContas(newConta)
 
         // salvar de verdade

@@ -1,10 +1,24 @@
-//import { useState, useEffect, useRef } from "react";
-import { View, Text, StyleSheet, FlatList, Pressable, Modal } from 'react-native'
-//import { useIsFocused } from "@react-navigation/native";
+import { useState, useEffect, useRef } from "react";
+import { View, Text, StyleSheet, FlatList, Modal } from 'react-native'
+import { useIsFocused } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-//import useStorage from "../../hooks/useStorage";
+import useStorage from "../../hooks/useStorage";
+import {ResultadoItem} from '../results/components/resultadoItem'
 
 export function Results() {
+
+  const [listResultados, setListResultados] = useState([])
+  const focused = useIsFocused();
+  const { getItem } = useStorage();
+
+  useEffect(() => {
+      async function loadResultados(){
+          const valor = await getItem('tableContas')
+          setListResultados(valor);
+      }
+
+      loadResultados();
+  }, [focused])
 
       return (
         <SafeAreaView style={{ flex:1, }}>
@@ -13,12 +27,12 @@ export function Results() {
             </View>
 
             <View style={styles.content}>
-                <Text style={styles.texto}>Para copiar um resultado apenas segure encima do desejado.</Text>
-
-                <Pressable style={styles.containerTabela}>
-                  <Text style={styles.text}>Conta</Text>
-                  <Text style={styles.text}>Resultado</Text>
-                </Pressable> 
+                <FlatList
+                    style={{ flex:1, paddingTop:14, }}
+                    data={listResultados}
+                    keyExtractor={ (item) => String(item) }
+                    renderItem={ ({item}) => <ResultadoItem data={item} /> }
+                />
             </View>
         </SafeAreaView>
       );

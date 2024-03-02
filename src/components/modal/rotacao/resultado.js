@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
-//import useStorage from "../../hooks/useStorage";
+import useStorage from "../../../hooks/useStorage";
 import { useState } from 'react';
 
 export function ModalResultado({handleClose, resultado}) {
+
+    const { addNewConta } = useStorage()
 
     async function copy() {
         Clipboard.setStringAsync(resultado)
@@ -12,7 +14,8 @@ export function ModalResultado({handleClose, resultado}) {
     }
     
     async function saveRotacao(resultado) {
-        
+        const newConta = {tipoConta: 'Rotação', valor: resultado}
+        addNewConta(newConta)
     }
     
     return (
