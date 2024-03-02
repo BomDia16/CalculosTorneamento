@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { View, Text, StyleSheet, FlatList, Modal } from 'react-native'
+import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { useIsFocused } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useStorage from "../../hooks/useStorage";
+import { Table, Row } from 'react-native-table-component';
 import {ResultadoItem} from '../results/components/resultadoItem'
 
 export function Results() {
@@ -14,6 +15,7 @@ export function Results() {
   useEffect(() => {
       async function loadResultados(){
           const valor = await getItem('tableContas')
+          console.log(listResultados)
           setListResultados(valor);
       }
 
@@ -27,12 +29,17 @@ export function Results() {
             </View>
 
             <View style={styles.content}>
-                <FlatList
-                    style={{ flex:1, paddingTop:14, }}
-                    data={listResultados}
-                    keyExtractor={ (item) => String(item) }
-                    renderItem={ ({item}) => <ResultadoItem data={item} /> }
-                />
+            <Table>
+                    <Text style={styles.texto}>Para copiar um resultado apenas segure encima do desejado.</Text>
+
+                      <Pressable style={styles.containerTabela}>
+                        <Text style={styles.text}>Conta</Text>
+                        <Text style={styles.text}>Resultado</Text>
+                      </Pressable> 
+                          {listResultados.map((rowData, index) => (
+                      <Row key={index} data={[rowData.tipoConta, rowData.valor]} style={styles.row} textStyle={styles.text} />
+                      ))}
+              </Table>
             </View>
         </SafeAreaView>
       );

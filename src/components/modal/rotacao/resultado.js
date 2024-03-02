@@ -6,16 +6,20 @@ import { useState } from 'react';
 
 export function ModalResultado({handleClose, resultado}) {
 
-    const { addNewConta } = useStorage()
+    const { addNewConta, clearall } = useStorage()
 
     async function copy() {
         Clipboard.setStringAsync(resultado)
         alert('Valor copiado com sucesso!')
     }
     
-    async function saveRotacao(resultado) {
+    async function saveRotacao() {
         const newConta = {tipoConta: 'Rotação', valor: resultado}
         addNewConta(newConta)
+    }
+
+    async function clear() {
+        clearall()
     }
     
     return (

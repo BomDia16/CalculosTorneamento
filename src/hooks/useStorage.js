@@ -14,7 +14,10 @@ const useStorage = () => {
         try {
             const storedData = await AsyncStorage.getItem('tableContas');
             if(storedData) {
-                setTableContas(JSON.parse(storedData))
+                return JSON.parse(storedData) || [];
+                setTableContas(pegar)
+            } else{
+                console.log('nao')
             }
 
         } catch (error) {
@@ -27,8 +30,9 @@ const useStorage = () => {
     const addNewConta = async (newRow) => {
         const newId = tableContas.leght + 1
         const newConta = [...tableContas, { id: newId, ...newRow}];
-        setTableContas(newConta)
-
+        salvar = setTableContas(newConta)
+        //if(salvar){console.log('sim')}else{console.log('nao')}
+    
         // salvar de verdade
         await saveItem(newConta)
     }
@@ -58,11 +62,21 @@ const useStorage = () => {
         }
     }
 
+    const clearall = async () => {
+        try {
+            await AsyncStorage.clear();
+            console.log('Todos os itens do AsyncStorage foram removidos.');
+          } catch (error) {
+            console.error('Erro ao limpar o AsyncStorage:', error);
+          }
+    }
+
     return {
         getItem,
         saveItem,
         removeItem,
-        addNewConta
+        addNewConta,
+        clearall
     }
 }
 
