@@ -39,6 +39,11 @@ export function Results() {
                           {listResultados.map((rowData, index) => (
                       <Row key={index} data={[rowData.tipoConta, rowData.valor]} style={styles.row} textStyle={styles.text} />
                       ))}
+
+                      <Pressable style={styles.containerTabelaResultado}>
+                        <Text style={styles.text}>Avanço por rotação</Text>
+                        <Text style={styles.text}>13,70 mm/rot</Text>
+                      </Pressable> 
               </Table>
             </View>
         </SafeAreaView>
@@ -92,6 +97,16 @@ const styles = StyleSheet.create({
     },
     containerTabela: {
       backgroundColor: "#0e0e0e",
+      padding: 14,
+      width:"100%",
+      borderRadius:8,
+      flexDirection:'row',
+      alignItems:'center',
+      justifyContent:'space-around',
+      marginTop: 30,
+    },
+    containerTabelaResultado: {
+      backgroundColor: "gray",
       padding: 14,
       width:"100%",
       borderRadius:8,

@@ -10,15 +10,11 @@ const useStorage = () => {
     }, [])
 
     // buscar itens salvos
-    const getItem = async () => {
+    const getItem = async (key) => {
         try {
-            const storedData = await AsyncStorage.getItem('tableContas');
-            if(storedData) {
-                return JSON.parse(storedData) || [];
-                setTableContas(pegar)
-            } else{
-                console.log('nao')
-            }
+            const storedData = await AsyncStorage.getItem(key);
+            console.log(storedData)
+            return JSON.parse(storedData) || [];
 
         } catch (error) {
             console.log('Erro ao buscar', error)
@@ -28,9 +24,9 @@ const useStorage = () => {
 
     // adicionar nova linha
     const addNewConta = async (newRow) => {
-        const newId = tableContas.leght + 1
+        const newId = tableContas.length + 1
         const newConta = [...tableContas, { id: newId, ...newRow}];
-        salvar = setTableContas(newConta)
+        setTableContas(newConta)
         //if(salvar){console.log('sim')}else{console.log('nao')}
     
         // salvar de verdade
@@ -38,9 +34,14 @@ const useStorage = () => {
     }
 
     // salvar item no storage
-    const saveItem = async (data) => {
+    const saveItem = async (key, value) => {
         try {
-            await AsyncStorage.setItem('tableContas', JSON.stringify(data))
+            let contas = await getItem(key);
+            const newId = contas.length + 1
+            const newConta = [...contas, { id: newId, ...value}];
+
+            contas.push(newConta)
+            await AsyncStorage.setItem(key, JSON.stringify(contas))
             
         } catch (error) {
             console.log('Erro ao salvar', error)
